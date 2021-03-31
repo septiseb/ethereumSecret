@@ -37,7 +37,9 @@
         }
 
         // Set a default account
-        web3.eth.defaultAccount = web3.eth.accounts[0];
+        web3.eth.defaultAccount = "0x5c4a955b176e58Ea9d3206cD58E5E8f852416a6c"
+
+        console.log( web3.eth.defaultAccount)
 
         // Get the contract address
         var RemixContract = new web3.eth.Contract(
@@ -70,8 +72,8 @@
                         "stateMutability": "view",
                         "type": "function"
                     }
-                ], '0xE59be8Ef9D694E4C83D881784055FC8Ca625f2e9', {
-                    from: '0x5f0f037b77Ee98c9563Cb881fD91618E98Feefa2', // default from address
+                ], '0xc3a24F5C9DDCc63280B4Ed795883Fe13E7CDC843', {
+                    from: web3.eth.defaultAccount, // default from address
                     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
                 }
             );
@@ -80,6 +82,7 @@
         $("#setMessageButton").click(function () {
             RemixContract.methods.setMessage($("#userInput").val()).send();
             console.log($("#userInput").val())
+            console.log( RemixContract.methods.setMessage($("#userInput").val()))
         });
 
     </script>
